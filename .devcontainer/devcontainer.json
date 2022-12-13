@@ -1,0 +1,37 @@
+{
+    "name": "julia-for-data-analysis",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "1.9.0-alpha1-bullseye",
+            "USERNAME": "vscode",
+            "USE_UID": "1000",
+            "USE_GID": "1000",
+        }
+    },
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "/bin/bash",
+                "args": [
+                    "-l"
+                ]
+            }
+        }
+    },
+    "extensions": [
+        "julialang.language-julia",
+        "VisualStudioExptTeam.vscodeintellicode",
+    ],
+    "containerEnv": {
+        "JULIA_PROJECT": "${containerWorkspaceFolder}",
+        "JULIA_DEPOT_PATH": "${containerWorkspaceFolder}/.julia",
+    },
+    // "runArgs": [
+    //     "--env-file",
+    //     ".devcontainer/devcontainer.env",
+    // ],
+    "remoteUser": "vscode",
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+}
